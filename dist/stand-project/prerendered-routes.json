@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/",
+    "/checkout",
+    "/earphones",
+    "/headphones",
+    "/speakers"
+  ]
+}
