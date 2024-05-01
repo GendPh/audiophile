@@ -1,0 +1,183 @@
+/* npx tailwindcss -i ./src/input.css -o ./src/styles.css --watch */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply font-Manrope;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  section {
+    @apply px-6 py-10 lg:px-40 bg-white;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .subtitle,
+  .over-line {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: 2px;
+  }
+  h2 {
+    font-size: 40px;
+    line-height: 44px;
+    letter-spacing: 1.5px;
+  }
+  h3 {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 1.15px;
+  }
+  h4 {
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: 2px;
+  }
+  h5 {
+    font-size: 24px;
+    line-height: 33px;
+    letter-spacing: 1.7px;
+  }
+  h6 {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 1.3px;
+  }
+  .over-line {
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: 10px;
+    font-weight: normal;
+  }
+  button {
+    @apply py-2 px-6 transition-colors duration-100 ease-in-out;
+    &.button-primary {
+      @apply bg-brown text-white;
+      &:hover {
+        @apply bg-brown-light;
+      }
+    }
+    &.button-secondary {
+      @apply bg-white text-black border border-black;
+      &:hover {
+        @apply bg-black text-white;
+      }
+    }
+    &.button-secondary-black {
+      @apply bg-black text-white border border-black;
+      &:hover {
+        @apply bg-white text-black;
+      }
+    }
+    &.button-shop {
+      @apply text-black relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -10%;
+        transform: translateY(-50%);
+        width: 50%;
+        aspect-ratio: 1/1;
+        background: transparent
+          url("assets/shared/desktop/icon-arrow-right-black.svg") center center
+          no-repeat;
+      }
+      &:hover {
+        @apply text-brown;
+        &::after {
+          background: transparent
+            url("assets/shared/desktop/icon-arrow-right.svg") center center
+            no-repeat;
+        }
+      }
+    }
+  }
+}
+
+@layer components {
+  /* Style to remove the spinner arrows */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .logo {
+    @apply font-bold font-Manrope text-white text-2xl;
+  }
+  .item {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      top: 20%;
+      z-index: 0;
+      @apply bg-gray rounded-lg;
+    }
+  }
+
+  .input-field {
+    @apply flex flex-col gap-1 mb-3;
+    & input {
+      @apply border border-[#cfcfcf] rounded-lg py-4 px-6 focus-within:border-brown outline-none;
+      &.invalid {
+        @apply border border-red-500;
+      }
+    }
+  }
+
+  .radio-group {
+    @apply flex flex-col gap-5;
+  }
+  .radio-label {
+    border: 1px solid #cfcfcf;
+    @apply flex items-center p-2 rounded-lg gap-5 cursor-pointer transition-colors duration-300;
+    &:hover {
+      @apply border-brown;
+    }
+  }
+  .radio-input {
+    @apply hidden;
+  }
+  .radio-input:checked + .radio-label {
+    @apply border-brown;
+  }
+
+  .radio-input:focus + .radio-label {
+    @apply outline outline-2 outline-brown;
+  }
+
+  .radio-inner-circle {
+    display: inline-block;
+    position: relative;
+    @apply w-4 aspect-square border border-[#cfcfcf] rounded-full;
+  }
+
+  .radio-input:checked + .radio-label .radio-inner-circle::after {
+    content: "";
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @apply bg-brown;
+  }
+}

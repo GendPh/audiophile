@@ -1,0 +1,19 @@
+<h1 class="bg-black text-white text-center p-5">Speakers</h1>
+<main>
+  <section>
+    <app-category-item [Product]="speakerNew"></app-category-item>
+  </section>
+
+  <section *ngFor="let item of speakers; let i = index">
+    <app-category-item [Product]="item" [ProductReverse]="i % 2 === 0 ? true : false"></app-category-item>
+  </section>
+
+
+  <section>
+    <app-category></app-category>
+  </section>
+
+  <section>
+    <app-audio-gear-text></app-audio-gear-text>
+  </section>
+</main>

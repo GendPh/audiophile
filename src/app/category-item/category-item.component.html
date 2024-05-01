@@ -1,0 +1,12 @@
+<article class="grid gap-10 lg:grid-cols-2">
+  <img [src]=" product.image.mobile" [alt]="product.name" class="rounded-lg w-full md:aspect-video lg:hidden">
+  <img [src]="product.image.desktop" [alt]="product.name" class="rounded-lg hidden lg:block"
+    [ngClass]="{'lg:col-start-2 lg:col-end-3': isProductReverse}">
+  <div class="text-center lg:text-start flex flex-col justify-center items-center lg:items-start gap-5 max-w-xl mx-auto"
+    [ngClass]="{'lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2': isProductReverse}">
+    <p [hidden]="!product.newProduct" class="text-brown over-line">New Product</p>
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <button [routerLink]="'/products/' + product.name" class="button-primary">See Product</button>
+  </div>
+</article>

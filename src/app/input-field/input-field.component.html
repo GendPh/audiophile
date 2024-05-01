@@ -1,0 +1,7 @@
+<div class="input-field">
+  <label class="capitalize w-full flex items-center justify-between" [for]="label">{{label}} <span
+      class="text-xs text-red-500" [hidden]="!inputInvalid">Wrong
+      Format</span></label>
+  <input [type]="type" [(ngModel)]="inputValue" (blur)="OnBlurVerifyInput()" [ngClass]="{'invalid':inputInvalid}"
+    [placeholder]="placeholder" required>
+</div>

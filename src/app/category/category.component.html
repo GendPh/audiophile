@@ -1,0 +1,8 @@
+<article class="grid md:grid-cols-3 gap-5">
+  <div class="item  z-10" *ngFor="let item of itemCategories">
+    <img class="w-24 md:w-40 relative z-10 mx-auto"
+      src="../../assets/shared/desktop/image-category-thumbnail-{{item}}.png" alt="Image of a {{item}}">
+    <h6 class="capitalize text-center z-10 relative">{{item}}</h6>
+    <a routerLink='/{{item}}'><button class="button-shop block mx-auto">SHOP</button></a>
+  </div>
+</article>

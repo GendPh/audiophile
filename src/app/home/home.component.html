@@ -1,0 +1,73 @@
+<main>
+  <section class="grid grid-cols-1 relative p-0 ">
+    <img class="md:hidden w-full col-start-1 col-end-2 row-start-1 row-end-2"
+      src="../assets/home/mobile/image-header.jpg" alt="image small of a headphone">
+
+    <img class="hidden md:block lg:hidden w-full col-start-1 col-end-2 row-start-1 row-end-2"
+      src="../assets/home/tablet/image-header.jpg" alt="image small of a headphone">
+
+    <img class="hidden lg:block w-full col-start-1 col-end-2 row-start-1 row-end-2"
+      src="../assets/home/desktop/image-hero.jpg" alt="image small of a headphone">
+
+    <div
+      class="col-start-1 col-end-2 row-start-1 row-end-2 flex flex-col justify-center lg:items-start items-center gap-5 text-center lg:text-start text-white max-w-sm mx-auto lg:mx-40">
+      <p class="over-line opacity-50 ">New Product</p>
+      <h1>XX99 mark II headphones</h1>
+      <p class="opacity-50">Experience natural, lifelike audio and exceptional build quality made for the passionate
+        music enthusiast.
+      </p>
+      <button routerLink="products/XX99 Mark II Headphones" class="button-primary">See Product</button>
+    </div>
+  </section>
+
+  <section>
+    <app-category></app-category>
+  </section>
+
+  <section class="grid gap-10">
+    <div
+      class="overflow-hidden bg-brown rounded-lg p-5 lg:pb-0 lg:pt-16 text-center lg:text-start text-white grid gap-5 lg:gap-0 lg:grid-cols-2">
+      <img class="w-40 mx-auto md:hidden" src="../assets/home/mobile/image-speaker-zx9.png" alt="image of speaker zx9">
+      <img class="w-40 mx-auto hidden md:block lg:hidden" src="../assets/home/tablet/image-speaker-zx9.png"
+        alt="image of speaker zx9">
+      <img class="w-56 mx-auto hidden lg:block  translate-y-2" src="../assets/home/desktop/image-speaker-zx9.png"
+        alt="image of speaker zx9">
+      <div class="max-w-96 mx-auto flex lg:items-start lg:justify-center flex-col gap-5">
+        <h3 class="text-balance">zx9 speaker</h3>
+        <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
+        <button class="mt-5 button-secondary-black"><a href="#">See Product</a></button>
+      </div>
+    </div>
+
+    <div class="py-20 px-5 rounded-lg md:hidden"
+      style="background: url(../assets/home/mobile/image-speaker-zx7.jpg) no-repeat center/100% 100%;">
+      <h3>ZX7 SPEAKER</h3>
+      <button class="mt-10 button-secondary"><a href="#">See Product</a></button>
+    </div>
+
+    <div class="py-20 px-5 rounded-lg hidden md:block lg:hidden"
+      style="background: url(../assets/home/tablet/image-speaker-zx7.jpg) no-repeat center/100% 100%;">
+      <h3>ZX7 SPEAKER</h3>
+      <button class="mt-10 button-secondary"><a href="#">See Product</a></button>
+    </div>
+
+    <div class="py-20 px-5 rounded-lg hidden lg:block"
+      style="background: url(../assets/home/desktop/image-speaker-zx7.jpg) no-repeat center/100% 100%;">
+      <h3>ZX7 SPEAKER</h3>
+      <button class="mt-10 button-secondary"><a href="#">See Product</a></button>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5 md:gap-0 lg:gap-5">
+      <div class="aspect-video rounded-lg"
+        style="background: url(../assets/home/mobile/image-earphones-yx1.jpg) no-repeat center/100% 100%;"></div>
+      <div class="bg-gray p-10 rounded-lg">
+        <h3>YX1 EARPHONES</h3>
+        <button class="mt-10 button-secondary"><a href="#">See Product</a></button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <app-audio-gear-text></app-audio-gear-text>
+  </section>
+</main>

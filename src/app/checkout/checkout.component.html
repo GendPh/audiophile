@@ -1,0 +1,125 @@
+<main class="flex flex-col gap-5 lg:flex-row relative">
+  <section class="bg-transparent pb-0 flex-grow lg:pr-0">
+    <a class="opacity-50" routerLink="/">Go Back</a>
+    <form method="post" action="" class="grid bg-white p-5 rounded-lg mt-5">
+      <article>
+        <h4>Checkout</h4>
+        <h6 class="text-brown my-5">billing details</h6>
+        <div class="grid gap-5 md:grid-cols-2">
+          <app-input-field GetLabel="name" GetPlaceholder="Gabriel Ferreira" GetRegexType="name"></app-input-field>
+          <app-input-field GetLabel="email" GetType="email" GetPlaceholder="gabriel@email.com"
+            GetRegexType="email"></app-input-field>
+          <app-input-field GetLabel="phone" GetType="number" GetRegexType="phone"
+            GetPlaceholder="912345678"></app-input-field>
+        </div>
+
+        <h6 class="text-brown my-5">shipping info</h6>
+        <app-input-field GetRegexType="address" GetLabel="address"
+          GetPlaceholder="1137 Williams Avenue"></app-input-field>
+        <div class="grid gap-5 md:grid-cols-2">
+          <app-input-field GetRegexType="zip" GetLabel="zip-code" GetType="number" GetPlaceholder="10001"
+            GetRegex="/^\d+$/"></app-input-field>
+          <app-input-field GetRegexType="city" GetLabel="city" GetPlaceholder="New York"></app-input-field>
+          <app-input-field GetRegexType="country" GetLabel="country" GetPlaceholder="United States"></app-input-field>
+        </div>
+
+        <h6 class="text-brown my-5">payment details</h6>
+        <div class="grid gap-5 md:grid-cols-2">
+          <p class="font-bold font-Manrope">Payment Method</p>
+          <div class="radio-group">
+            <input (change)="SetPaymentMethod('e-money')" class="radio-input" name="payment" id="e-money" type="radio"
+              checked>
+            <label class="radio-label" for="e-money">
+              <span class="radio-inner-circle"></span>
+              E-Money
+            </label>
+
+            <input (change)="SetPaymentMethod('cash')" class="radio-input" name="payment" id="cash" type="radio">
+            <label class="radio-label" for="cash">
+              <span class="radio-inner-circle"></span>
+              Cash on Delivery
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-5 md:grid-cols-2" *ngIf="eMoneyContainer">
+          <app-input-field GetLabel="e-money number" GetPlaceholder="238521993"
+            GetRegexType="eMoneyNumber"></app-input-field>
+          <app-input-field GetLabel="e-money pin" GetPlaceholder="1111" GetRegexType="eMoneyPin"></app-input-field>
+        </div>
+
+      </article>
+    </form>
+  </section>
+  <section class="bg-transparent pt-0 lg:py-10 lg:pl-0 lg:mt-5">
+    <a class="opacity-0">Go Back</a>
+    <article class="p-5 bg-white rounded-lg">
+      <h4>Summary</h4>
+      <div class="flex flex-col gap-5 mt-5">
+        <p [hidden]="cart.length>0">No Products</p>
+        <div *ngFor="let item of cart" class="flex justify-between gap-5">
+          <div class="flex gap-3">
+            <figure class="bg-gray rounded-lg">
+              <img class="w-20 rounded-lg" src="../../assets/cart/image-{{item.slug}}.jpg" alt="img">
+            </figure>
+            <div class="font-bold">
+              <p>{{item.name}}</p>
+              <p class="opacity-50">$ {{item.price}}</p>
+            </div>
+          </div>
+          <p>X{{item.quantity}}</p>
+        </div>
+        <div>
+          <p class="flex justify-between uppercase font-bold font-Manrope"><span class="opacity-50">TOTAL</span><span>$
+              {{cartTotal[0]}}</span></p>
+          <p class="flex justify-between uppercase font-bold font-Manrope"><span class="opacity-50">SHIP</span><span>$
+              {{shippingTotal}}</span></p>
+          <p class="flex justify-between uppercase font-bold font-Manrope"><span class="opacity-50">VAT
+              (Include)</span><span>${{cartVAT[0]}}</span></p>
+          <p class="my-5 flex justify-between uppercase font-bold font-Manrope"><span class="opacity-50">Grand
+              total</span><span class="text-brown">$
+              {{shippingTotal + cartVAT[0] + cartTotal[0]}}</span></p>
+          <button (click)="FinalCheckout()" class="button-primary w-full">Continue</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+
+  <div class="z-0 pointer-events-none fixed inset-0 bg-[rgba(0,0,0,0.5)]" *ngIf="finishCheckout"></div>
+
+  <aside *ngIf="finishCheckout" class="z-0 fixed left-1/2 -translate-x-1/2 bg-white rounded-lg p-5 mt-5"
+    style="width: min(100%,600px);">
+    <img class="w-10" src="../../assets/checkout/icon-order-confirmation.svg" alt="icon confirmation">
+    <h5 class="text-balance my-3 text-xl">Thank you for your order</h5>
+    <p class="opacity-50 text-sm">You will receive an email confirmation shortly.</p>
+
+    <div class="bg-gray rounded-lg my-3 grid md:grid-cols-2">
+      <div>
+        <div class="p-3 px-5 flex justify-between items-center gap-5">
+          <div class="flex-grow flex items-center gap-3">
+            <figure>
+              <img class="w-20 rounded-lg" src="../../assets/cart/image-{{cartCopy[0].slug}}.jpg" alt="img">
+            </figure>
+            <div class="font-bold">
+              <p>{{cartCopy[0].name}}</p>
+              <p class="opacity-50">$ {{cartCopy[0].price}}</p>
+            </div>
+          </div>
+          <p>X{{cartCopy[0].quantity}}</p>
+        </div>
+        <div class="h-[1px] mr-5 ml-5 bg-black opacity-20"></div>
+        <div class="p-3" *ngIf="cartCopy.length > 1">
+          <p class="text-center opacity-50">and {{cartCopy.length - 1}} more items</p>
+        </div>
+      </div>
+      <div class="bg-black text-white p-3 px-5 rounded-b-lg flex flex-col md:justify-end lg:justify-center gap-3">
+        <p class="uppercase opacity-50 text-sm">ground total</p>
+        <p class="font-bold text-xl">$ {{cartTotalCopy + shippingTotal + cartVATCopy}}</p>
+      </div>
+    </div>
+
+    <button routerLink="/" (click)="ResetFinishContainer()" class="button-primary w-full">Back Home</button>
+  </aside>
+
+</main>

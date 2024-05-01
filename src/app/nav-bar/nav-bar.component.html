@@ -1,0 +1,52 @@
+<header class="bg-black z-50">
+  <div
+    class="p-4 lg:mx-40 border border-transparent border-b-[rgba(255,255,255,0.3)] flex justify-between items-center z-50">
+    <div class="flex">
+      <button (click)="ActiveMenu()" class="lg:hidden pointer-events-auto">
+        <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#FFF" fill-rule="evenodd">
+            <path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z" />
+          </g>
+        </svg>
+      </button>
+      <a routerLink="/" (click)="ReloadPage()" class="pointer-events-auto logo hidden md:block">audiophile</a>
+    </div>
+
+    <a (click)="ReloadPage()" routerLink="/" class="pointer-events-auto logo md:hidden">audiophile</a>
+
+    <nav class="hidden lg:block text-white uppercase">
+      <ul class="flex gap-5">
+        <li><a class="text-white transition-colors duration-150 hover:text-brown" routerLinkActive="active"
+            routerLink="/" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page">Home</a></li>
+        <li><a class="text-white transition-colors duration-150 hover:text-brown" routerLinkActive="active"
+            routerLink="/headphones" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page">HEADPHONE</a>
+        </li>
+        <li><a class="text-white transition-colors duration-150 hover:text-brown" routerLinkActive="active"
+            routerLink="/speakers" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page">SPEAKERS</a>
+        </li>
+        <li><a class="text-white transition-colors duration-150 hover:text-brown" routerLinkActive="active"
+            routerLink="/earphones" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page">EARPHONES</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button (click)="ActiveCart()" class="pointer-events-auto">
+      <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8.625 15.833c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.054-.935-2.054-2.083 0-1.15.922-2.084 2.054-2.084zm9.857 0c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.053-.935-2.053-2.083 0-1.15.92-2.084 2.053-2.084zm-9.857 1.39a.69.69 0 00-.685.694.69.69 0 00.685.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zm9.857 0a.69.69 0 00-.684.694.69.69 0 00.684.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zM4.717 0c.316 0 .59.215.658.517l.481 2.122h16.47a.68.68 0 01.538.262c.127.166.168.38.11.579l-2.695 9.236a.672.672 0 01-.648.478H7.41a.667.667 0 00-.673.66c0 .364.303.66.674.66h12.219c.372 0 .674.295.674.66 0 .364-.302.66-.674.66H7.412c-1.115 0-2.021-.889-2.021-1.98 0-.812.502-1.511 1.218-1.816L4.176 1.32H.674A.667.667 0 010 .66C0 .296.302 0 .674 0zm16.716 3.958H6.156l1.797 7.917h11.17l2.31-7.917z"
+          fill="#FFF" fill-rule="nonzero" />
+      </svg>
+    </button>
+
+
+    <div [ngClass]="{'bg-[rgba(0,0,0,0.5)]':showCart || showMenu}"
+      class="pointer-events-none fixed inset-0 top-[70px] bg-[rgba(0,0,0,0)]">
+    </div>
+
+    <app-category (click)="ReloadPage()" [ngClass]="{'top-20':showMenu,'-top-[2000px]': !showMenu,}"
+      class="pointer-events-auto fixed left-0 right-0 grid gap-5 px-5 py-2 md:py-20 transition-all duration-150 bg-white rounded-lg z-10"></app-category>
+
+    <app-shop-container (CloseShopBar)="CloseShopBar()" [ngClass]="{'top-20':showCart,'-top-[2000px]': !showCart,}"
+      class="pointer-events-auto fixed left-5 lg:w-fit lg:ml-auto right-5 lg:right-40 z-10 transition-all duration-150"></app-shop-container>
+  </div>
+</header>
